@@ -77,10 +77,12 @@ WSGI_APPLICATION = 'CrudDjangoRest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django-crud-books',
-        'USER': 'postgres',
-        ''
+        'USER': os.environ.get('USER_PSQL', 'postgres'),
+        'PASSWORD': os.environ.get('PASS_PSQL', 'development'),
+        'HOST': '127.0.0.1',
+        'PORT_PSQL': 5532
     }
 }
 
@@ -107,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'pt_BR'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Recife'
 
