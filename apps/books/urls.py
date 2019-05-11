@@ -4,6 +4,14 @@ from django.views.decorators.csrf import csrf_exempt
 from . import views
 
 urlpatterns = [
-    path('', csrf_exempt(views.BookView.as_view({'get': 'list'}))),
-    path('store', csrf_exempt(views.BookView.as_view({'post': 'create'})))
+    path('books', csrf_exempt(views.BookView.as_view({
+        'get': 'list',
+        'post': 'create'
+    }))),
+    path('books/<int:pk>', csrf_exempt(views.BookView.as_view({
+        'get': 'retrieve',
+        'put': 'update',
+        'patch': 'partial_update',
+        'delete': 'destroy'
+    })))
 ]

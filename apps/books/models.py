@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Book(models.Model):
     id = models.AutoField(primary_key=True, editable=False)
     title = models.CharField(max_length=255, null=False)
