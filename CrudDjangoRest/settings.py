@@ -38,8 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.books'
+    'apps.books',
+    'apps.users'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +85,7 @@ WSGI_APPLICATION = 'CrudDjangoRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django-crud-books',
+        'NAME': 'djangoRestCrud',
         'USER': os.environ.get('USER_PSQL', 'postgres'),
         'PASSWORD': os.environ.get('PASS_PSQL', 'development'),
         'HOST': '127.0.0.1',
@@ -104,6 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
+AUTH_USER_MODEL = 'users.User'
 
 
 # Internationalization
