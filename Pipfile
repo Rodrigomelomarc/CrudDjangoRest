@@ -11,6 +11,7 @@ django = "*"
 psycopg2 = "*"
 model-mommy = "*"
 bcrypt = "*"
+pylama = "*"
 
 [requires]
 python_version = "3.6"
